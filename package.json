@@ -1,0 +1,16 @@
+{
+  "name": "ai-academy-miaoda-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A privacy-safe, dependency-free showcase of an AI learning platform concept.",
+  "scripts": {
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-include=src/courses.js --test-coverage-include=scripts/privacy-check.mjs --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=80",
+    "privacy:check": "node scripts/privacy-check.mjs",
+    "serve": "python3 -m http.server 4173"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
