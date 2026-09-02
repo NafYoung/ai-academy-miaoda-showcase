@@ -29,7 +29,7 @@ test("课程信息满足卡片展示所需字段", () => {
     assert.ok(course.summary.length >= 18);
     assert.ok(COURSE_CATEGORIES.includes(course.category));
     assert.ok(course.level === "入门" || course.level === "进阶");
-    assert.ok(Number.isInteger(course.minutes) && course.minutes > 0);
+    assert.ok(course.outcome.length >= 8);
   }
 });
 

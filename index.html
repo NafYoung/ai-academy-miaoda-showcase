@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="一个不连接组织数据、仅使用官网公开链接的 AI 学习平台作品展示。"
+    />
+    <meta name="color-scheme" content="light" />
+    <title>Orbit Academy · AI 学习平台展示版</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2314152a'/%3E%3Ccircle cx='22' cy='21' r='6' fill='white'/%3E%3Ccircle cx='42' cy='40' r='6' fill='%238d82ff'/%3E%3Cpath d='M25 25L38 36' stroke='white' stroke-width='3' opacity='.55'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="平台导航">
+        <a class="brand" href="#overview" aria-label="Orbit Academy 首页">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>
+            <strong>Orbit</strong>
+            <small>Academy</small>
+          </span>
+        </a>
+
+        <nav class="nav-list">
+          <a class="nav-item is-active" href="#overview">
+            <span aria-hidden="true">⌂</span>学习总览
+          </a>
+          <a class="nav-item" href="#path">
+            <span aria-hidden="true">↗</span>成长路径
+          </a>
+          <a class="nav-item" href="#catalog">
+            <span aria-hidden="true">▦</span>公开课程
+          </a>
+          <a class="nav-item" href="#boundaries">
+            <span aria-hidden="true">◇</span>项目边界
+          </a>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="status-dot" aria-hidden="true"></span>
+          <div>
+            <strong>公开展示环境</strong>
+            <p>不连接组织账号与私有数据</p>
+          </div>
+        </div>
+      </aside>
+
+      <main id="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">PRODUCT SHOWCASE</p>
+            <p class="page-title">学习工作台</p>
+          </div>
+          <div class="topbar-actions">
+            <a class="source-pill" href="#boundaries">公开数据说明</a>
+            <div class="avatar" aria-label="演示用户">SY</div>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="hero" id="overview" aria-labelledby="hero-title">
+            <div class="hero-copy">
+              <div class="privacy-badge"><span></span>隐私安全展示版</div>
+              <h1 id="hero-title">让零散资源，汇成<br /><em>可执行的成长路径</em></h1>
+              <p>
+                面向 AI 工具重度使用者的学习平台概念：从目标拆解、资源发现到实践复盘，
+                让“看过”逐步变成“做成”。
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#catalog">浏览公开课程 <span>→</span></a>
+                <a class="button button-ghost" href="#boundaries">查看展示边界</a>
+              </div>
+              <dl class="hero-metrics">
+                <div><dt>6</dt><dd>公开资源</dd></div>
+                <div><dt>3</dt><dd>学习阶段</dd></div>
+                <div><dt>0</dt><dd>组织数据</dd></div>
+              </dl>
+            </div>
+
+            <div class="orbit-card" aria-label="学习路径示意图">
+              <div class="orbit-grid" aria-hidden="true"></div>
+              <div class="orbit-ring orbit-ring-one" aria-hidden="true"></div>
+              <div class="orbit-ring orbit-ring-two" aria-hidden="true"></div>
+              <div class="orbit-core">
+                <span>你的目标</span>
+                <strong>AI × 业务</strong>
+                <small>可验证成果</small>
+              </div>
+              <div class="orbit-node node-one"><b>01</b><span>探索</span></div>
+              <div class="orbit-node node-two"><b>02</b><span>实践</span></div>
+              <div class="orbit-node node-three"><b>03</b><span>交付</span></div>
+              <div class="orbit-caption">
+                <span>本周焦点</span>
+                <strong>从业务问题出发，做一个能被检验的作品</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="path-section section" id="path" aria-labelledby="path-title">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">LEARNING PATH</p>
+                <h2 id="path-title">从输入到作品的三段路径</h2>
+              </div>
+              <p>平台不替用户学习，而是让每一步都有目标、动作与可检查的结果。</p>
+            </div>
+
+            <ol class="path-grid">
+              <li class="path-card">
+                <div class="path-index">01</div>
+                <span class="path-icon path-icon-violet" aria-hidden="true">◎</span>
+                <h3>探索 · 定义问题</h3>
+                <p>从岗位或业务场景出发，明确本周真正要解决的一个问题。</p>
+                <span class="path-output">输出：问题卡</span>
+              </li>
+              <li class="path-card">
+                <div class="path-index">02</div>
+                <span class="path-icon path-icon-cyan" aria-hidden="true">⌘</span>
+                <h3>实践 · 完成闭环</h3>
+                <p>选择最少必要资源，在真实工具中搭出可运行的最小版本。</p>
+                <span class="path-output">输出：实践记录</span>
+              </li>
+              <li class="path-card">
+                <div class="path-index">03</div>
+                <span class="path-icon path-icon-blue" aria-hidden="true">↗</span>
+                <h3>交付 · 留下证据</h3>
+                <p>用结果、限制和下一轮改进说明作品，而不是只罗列工具名称。</p>
+                <span class="path-output">输出：作品证据</span>
+              </li>
+            </ol>
+          </section>
+
+          <section class="catalog-section section" id="catalog" aria-labelledby="catalog-title">
+            <div class="section-heading catalog-heading">
+              <div>
+                <p class="eyebrow">PUBLIC CATALOG</p>
+                <h2 id="catalog-title">官网公开课程目录</h2>
+              </div>
+              <p>仅整理标题、原创摘要与官网入口；内容版权归原发布方所有。</p>
+            </div>
+
+            <div class="catalog-toolbar">
+              <label class="search-box">
+                <span aria-hidden="true">⌕</span>
+                <span class="sr-only">搜索课程</span>
+                <input id="course-search" type="search" placeholder="搜索主题或学习目标" autocomplete="off" />
+              </label>
+              <div class="filter-list" id="category-filters" aria-label="按分类筛选"></div>
+            </div>
+
+            <div class="course-grid" id="course-grid" aria-live="polite"></div>
+            <div class="empty-state" id="empty-state" hidden>
+              <span aria-hidden="true">⌕</span>
+              <h3>没有匹配的公开资源</h3>
+              <p>换一个关键词，或查看全部分类。</p>
+              <button class="button button-ghost" id="reset-filters" type="button">清除筛选</button>
+            </div>
+          </section>
+
+          <section class="boundary-section section" id="boundaries" aria-labelledby="boundary-title">
+            <div class="boundary-intro">
+              <p class="eyebrow">PUBLIC BOUNDARY</p>
+              <h2 id="boundary-title">展示能力，也明确边界</h2>
+              <p>
+                这是一份重新搭建的公开作品样本，重点呈现信息架构、学习路径与交互设计。
+                它不连接任何真实组织、成员、学习记录或私有接口。
+              </p>
+            </div>
+            <ul class="boundary-list">
+              <li><span>✓</span><div><strong>公开来源</strong><p>课程入口均为 www.feishu.cn 官网页面</p></div></li>
+              <li><span>✓</span><div><strong>干净历史</strong><p>独立创建，不继承原项目提交与配置</p></div></li>
+              <li><span>✓</span><div><strong>静态体验</strong><p>无登录、数据库、写入动作与跟踪脚本</p></div></li>
+            </ul>
+          </section>
+        </div>
+
+        <footer>
+          <p>Orbit Academy · AI 学习平台作品展示</p>
+          <p>Public showcase · No organization data</p>
+        </footer>
+      </main>
+    </div>
+
+    <dialog class="course-dialog" id="course-dialog" aria-labelledby="dialog-title">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="关闭课程详情">×</button>
+      <p class="dialog-kicker" id="dialog-category"></p>
+      <h2 id="dialog-title"></h2>
+      <p class="dialog-summary" id="dialog-summary"></p>
+      <dl class="dialog-meta">
+        <div><dt>学习层级</dt><dd id="dialog-level"></dd></div>
+        <div><dt>预期收获</dt><dd id="dialog-outcome"></dd></div>
+        <div><dt>内容来源</dt><dd id="dialog-source"></dd></div>
+      </dl>
+      <a class="button button-primary dialog-link" id="dialog-link" href="#" target="_blank" rel="noopener noreferrer">
+        前往飞书官网 <span>↗</span>
+      </a>
+      <p class="dialog-disclaimer">将打开原发布方页面；本项目不保存你的浏览或学习数据。</p>
+    </dialog>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
