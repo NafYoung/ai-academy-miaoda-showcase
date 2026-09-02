@@ -6,13 +6,13 @@
 
 ## RED — 先定义边界
 
-- 检查点：`b9412f0`
+- 检查点提交：`test: define public showcase safety contract`
 - 先编写课程来源、筛选逻辑与隐私扫描测试
 - 首次运行因核心模块尚未创建而失败，确认测试能真实约束后续实现
 
 ## GREEN — 最小完整实现
 
-- 检查点：`e3867bb`
+- 检查点提交：`feat: add privacy-safe AI learning platform showcase`
 - 实现 6 个官网公开入口、搜索与分类筛选、详情弹窗和响应式界面
 - 实现仓库级隐私扫描，阻止环境文件、租户资源链接、常见私有标识和凭据形态
 - Node 测试：11 项通过
