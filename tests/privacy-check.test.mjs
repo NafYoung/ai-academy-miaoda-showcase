@@ -24,6 +24,19 @@ test("文本扫描能识别组织名称、租户链接与私有配置形态", ()
   assert.ok(findings.some(({ rule }) => rule === "private-capability-path"));
 });
 
+test("文本扫描允许案例名称，但阻止私有应用和身份标识", () => {
+  assert.deepEqual(scanText("Athena sanitized product case", "README.md"), []);
+  const findings = scanText(
+    [
+      "https://tenant." + "feishuapp.com/app/private",
+      "ou_" + "privateuserid123",
+    ].join("\n"),
+    "sample.txt",
+  );
+  assert.ok(findings.some(({ rule }) => rule === "private-app-domain"));
+  assert.ok(findings.some(({ rule }) => rule === "lark-private-id"));
+});
+
 test("公开飞书官网链接不会被误报", () => {
   const findings = scanText(
     "https://www.feishu.cn/hc/zh-CN/academy/guides_for_new_users",

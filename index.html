@@ -5,204 +5,297 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="一个不连接组织数据、仅使用官网公开链接的 AI 学习平台作品展示。"
+      content="Athena 企业学习平台脱敏产品案例：课程投稿、人工审核、学习进度、AI 辅助题库与课程生命周期治理。"
     />
     <meta name="color-scheme" content="light" />
-    <title>Orbit Academy · AI 学习平台展示版</title>
+    <meta property="og:title" content="Athena · 企业学习平台脱敏产品案例" />
+    <meta
+      property="og:description"
+      content="真实界面结构，合成示例数据。展示从课程投稿到学习治理的完整产品闭环。"
+    />
+    <meta
+      property="og:image"
+      content="https://nafyoung.github.io/ai-academy-miaoda-showcase/assets/screenshots/01-home.png"
+    />
+    <title>Athena · 企业学习平台脱敏产品案例</title>
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2314152a'/%3E%3Ccircle cx='22' cy='21' r='6' fill='white'/%3E%3Ccircle cx='42' cy='40' r='6' fill='%238d82ff'/%3E%3Cpath d='M25 25L38 36' stroke='white' stroke-width='3' opacity='.55'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 55 13v17c0 14-9 24-23 30C18 54 9 44 9 30V13Z' fill='%230b2c57'/%3E%3Cpath d='M19 23l13-8 13 8-5 19-8 5-8-5Z' fill='none' stroke='white' stroke-width='3'/%3E%3Ccircle cx='25' cy='28' r='3' fill='white'/%3E%3Ccircle cx='39' cy='28' r='3' fill='white'/%3E%3Cpath d='M25 35h14M32 35v9' stroke='white' stroke-width='3'/%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到主要内容</a>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="平台导航">
-        <a class="brand" href="#overview" aria-label="Orbit Academy 首页">
-          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span>
-            <strong>Orbit</strong>
-            <small>Academy</small>
-          </span>
-        </a>
 
-        <nav class="nav-list">
-          <a class="nav-item is-active" href="#overview">
-            <span aria-hidden="true">⌂</span>学习总览
-          </a>
-          <a class="nav-item" href="#path">
-            <span aria-hidden="true">↗</span>成长路径
-          </a>
-          <a class="nav-item" href="#catalog">
-            <span aria-hidden="true">▦</span>公开课程
-          </a>
-          <a class="nav-item" href="#boundaries">
-            <span aria-hidden="true">◇</span>项目边界
-          </a>
-        </nav>
-
-        <div class="sidebar-note">
-          <span class="status-dot" aria-hidden="true"></span>
-          <div>
-            <strong>公开展示环境</strong>
-            <p>不连接组织账号与私有数据</p>
-          </div>
-        </div>
-      </aside>
-
-      <main id="main-content">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow">PRODUCT SHOWCASE</p>
-            <p class="page-title">学习工作台</p>
-          </div>
-          <div class="topbar-actions">
-            <a class="source-pill" href="#boundaries">公开数据说明</a>
-            <div class="avatar" aria-label="演示用户">SY</div>
-          </div>
-        </header>
-
-        <div class="content-wrap">
-          <section class="hero" id="overview" aria-labelledby="hero-title">
-            <div class="hero-copy">
-              <div class="privacy-badge"><span></span>隐私安全展示版</div>
-              <h1 id="hero-title">让零散资源，汇成<br /><em>可执行的成长路径</em></h1>
-              <p>
-                面向 AI 工具重度使用者的学习平台概念：从目标拆解、资源发现到实践复盘，
-                让“看过”逐步变成“做成”。
-              </p>
-              <div class="hero-actions">
-                <a class="button button-primary" href="#catalog">浏览公开课程 <span>→</span></a>
-                <a class="button button-ghost" href="#boundaries">查看展示边界</a>
-              </div>
-              <dl class="hero-metrics">
-                <div><dt>6</dt><dd>公开资源</dd></div>
-                <div><dt>3</dt><dd>学习阶段</dd></div>
-                <div><dt>0</dt><dd>组织数据</dd></div>
-              </dl>
-            </div>
-
-            <div class="orbit-card" aria-label="学习路径示意图">
-              <div class="orbit-grid" aria-hidden="true"></div>
-              <div class="orbit-ring orbit-ring-one" aria-hidden="true"></div>
-              <div class="orbit-ring orbit-ring-two" aria-hidden="true"></div>
-              <div class="orbit-core">
-                <span>你的目标</span>
-                <strong>AI × 业务</strong>
-                <small>可验证成果</small>
-              </div>
-              <div class="orbit-node node-one"><b>01</b><span>探索</span></div>
-              <div class="orbit-node node-two"><b>02</b><span>实践</span></div>
-              <div class="orbit-node node-three"><b>03</b><span>交付</span></div>
-              <div class="orbit-caption">
-                <span>本周焦点</span>
-                <strong>从业务问题出发，做一个能被检验的作品</strong>
-              </div>
-            </div>
-          </section>
-
-          <section class="path-section section" id="path" aria-labelledby="path-title">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">LEARNING PATH</p>
-                <h2 id="path-title">从输入到作品的三段路径</h2>
-              </div>
-              <p>平台不替用户学习，而是让每一步都有目标、动作与可检查的结果。</p>
-            </div>
-
-            <ol class="path-grid">
-              <li class="path-card">
-                <div class="path-index">01</div>
-                <span class="path-icon path-icon-violet" aria-hidden="true">◎</span>
-                <h3>探索 · 定义问题</h3>
-                <p>从岗位或业务场景出发，明确本周真正要解决的一个问题。</p>
-                <span class="path-output">输出：问题卡</span>
-              </li>
-              <li class="path-card">
-                <div class="path-index">02</div>
-                <span class="path-icon path-icon-cyan" aria-hidden="true">⌘</span>
-                <h3>实践 · 完成闭环</h3>
-                <p>选择最少必要资源，在真实工具中搭出可运行的最小版本。</p>
-                <span class="path-output">输出：实践记录</span>
-              </li>
-              <li class="path-card">
-                <div class="path-index">03</div>
-                <span class="path-icon path-icon-blue" aria-hidden="true">↗</span>
-                <h3>交付 · 留下证据</h3>
-                <p>用结果、限制和下一轮改进说明作品，而不是只罗列工具名称。</p>
-                <span class="path-output">输出：作品证据</span>
-              </li>
-            </ol>
-          </section>
-
-          <section class="catalog-section section" id="catalog" aria-labelledby="catalog-title">
-            <div class="section-heading catalog-heading">
-              <div>
-                <p class="eyebrow">PUBLIC CATALOG</p>
-                <h2 id="catalog-title">官网公开课程目录</h2>
-              </div>
-              <p>仅整理标题、原创摘要与官网入口；内容版权归原发布方所有。</p>
-            </div>
-
-            <div class="catalog-toolbar">
-              <label class="search-box">
-                <span aria-hidden="true">⌕</span>
-                <span class="sr-only">搜索课程</span>
-                <input id="course-search" type="search" placeholder="搜索主题或学习目标" autocomplete="off" />
-              </label>
-              <div class="filter-list" id="category-filters" aria-label="按分类筛选"></div>
-            </div>
-
-            <div class="course-grid" id="course-grid" aria-live="polite"></div>
-            <div class="empty-state" id="empty-state" hidden>
-              <span aria-hidden="true">⌕</span>
-              <h3>没有匹配的公开资源</h3>
-              <p>换一个关键词，或查看全部分类。</p>
-              <button class="button button-ghost" id="reset-filters" type="button">清除筛选</button>
-            </div>
-          </section>
-
-          <section class="boundary-section section" id="boundaries" aria-labelledby="boundary-title">
-            <div class="boundary-intro">
-              <p class="eyebrow">PUBLIC BOUNDARY</p>
-              <h2 id="boundary-title">展示能力，也明确边界</h2>
-              <p>
-                这是一份重新搭建的公开作品样本，重点呈现信息架构、学习路径与交互设计。
-                它不连接任何真实组织、成员、学习记录或私有接口。
-              </p>
-            </div>
-            <ul class="boundary-list">
-              <li><span>✓</span><div><strong>公开来源</strong><p>课程入口均为 www.feishu.cn 官网页面</p></div></li>
-              <li><span>✓</span><div><strong>干净历史</strong><p>独立创建，不继承原项目提交与配置</p></div></li>
-              <li><span>✓</span><div><strong>静态体验</strong><p>无登录、数据库、写入动作与跟踪脚本</p></div></li>
-            </ul>
-          </section>
-        </div>
-
-        <footer>
-          <p>Orbit Academy · AI 学习平台作品展示</p>
-          <p>Public showcase · No organization data</p>
-        </footer>
-      </main>
-    </div>
-
-    <dialog class="course-dialog" id="course-dialog" aria-labelledby="dialog-title">
-      <button class="dialog-close" id="dialog-close" type="button" aria-label="关闭课程详情">×</button>
-      <p class="dialog-kicker" id="dialog-category"></p>
-      <h2 id="dialog-title"></h2>
-      <p class="dialog-summary" id="dialog-summary"></p>
-      <dl class="dialog-meta">
-        <div><dt>学习层级</dt><dd id="dialog-level"></dd></div>
-        <div><dt>预期收获</dt><dd id="dialog-outcome"></dd></div>
-        <div><dt>内容来源</dt><dd id="dialog-source"></dd></div>
-      </dl>
-      <a class="button button-primary dialog-link" id="dialog-link" href="#" target="_blank" rel="noopener noreferrer">
-        前往飞书官网 <span>↗</span>
+    <header class="masthead">
+      <a class="case-brand" href="#top" aria-label="Athena 产品案例首页">
+        <span class="case-brand__mark" aria-hidden="true">A</span>
+        <span>
+          <strong>ATHENA</strong>
+          <small>PRODUCT CASE / 2026</small>
+        </span>
       </a>
-      <p class="dialog-disclaimer">将打开原发布方页面；本项目不保存你的浏览或学习数据。</p>
-    </dialog>
+      <nav aria-label="案例导航">
+        <a href="#evidence">界面证据</a>
+        <a href="#workflow">业务闭环</a>
+        <a href="#boundaries">验证边界</a>
+        <a
+          class="github-link"
+          href="https://github.com/NafYoung/ai-academy-miaoda-showcase"
+          target="_blank"
+          rel="noopener noreferrer"
+        >GitHub ↗</a>
+      </nav>
+    </header>
 
-    <script type="module" src="./src/app.js"></script>
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero__copy">
+          <p class="case-label">SANITIZED PRODUCT CASE · 企业学习平台</p>
+          <h1>
+            <span class="hero-line">不是把课程搬上网，</span>
+            <span class="hero-line">而是把<em>学习运营做成闭环</em></span>
+          </h1>
+          <p class="hero__lead">
+            Athena 将课程发现、内容投稿、人工审核、学习进度、AI 辅助题库和课程生命周期治理串进同一套流程。
+            公开仓库展示真实界面结构与产品决策；所有人物、部门、课程、数量和链接均为合成示例。
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#evidence">查看真实界面</a>
+            <a class="button button--quiet" href="#boundaries">查看公开边界</a>
+          </div>
+          <dl class="proof-strip" aria-label="项目范围摘要">
+            <div><dt>4</dt><dd>类核心角色</dd></div>
+            <div><dt>6</dt><dd>条业务流程</dd></div>
+            <div><dt>162</dt><dd>项单测通过</dd></div>
+            <div><dt>0</dt><dd>条内部数据公开</dd></div>
+          </dl>
+        </div>
+
+        <figure class="hero__visual evidence-frame evidence-frame--hero">
+          <figcaption>
+            <span>PLATE 01</span>
+            <strong>学习入口与数据概览</strong>
+          </figcaption>
+          <img
+            src="./assets/screenshots/01-home.png"
+            alt="Athena 首页脱敏截图，展示课程、资料、完成进度与分类概览"
+            width="1280"
+            height="660"
+          />
+          <div class="sanitized-stamp">真实界面结构<br /><b>合成示例数据</b></div>
+        </figure>
+      </section>
+
+      <section class="brief" aria-labelledby="brief-title">
+        <div class="brief__title">
+          <p class="case-label">THE ASSIGNMENT</p>
+          <h2 id="brief-title">把分散内容变成可运营、可追踪、可治理的学习系统</h2>
+        </div>
+        <div class="brief__body">
+          <p>
+            难点不在于做出一张课程列表，而在于先弄清楚不同角色真正要完成什么，再把权限、状态、异常与人工确认放进流程。
+          </p>
+          <p>
+            我的工作集中在需求澄清、流程拆解、AI 辅助开发、测试验证与安全边界；没有把“能生成”当作“可上线”。
+          </p>
+        </div>
+      </section>
+
+      <section class="role-map" aria-label="核心角色与任务">
+        <article>
+          <span>LEARNER</span>
+          <h3>学习者</h3>
+          <p>找课程、区分必修与选修、继续学习、查看进度。</p>
+        </article>
+        <article>
+          <span>CONTRIBUTOR</span>
+          <h3>内容投稿者</h3>
+          <p>保存草稿、补齐适用部门与题目、提交审核。</p>
+        </article>
+        <article>
+          <span>REVIEWER</span>
+          <h3>课程审核者</h3>
+          <p>核对内容和题目，退回修改或受控同步为草稿。</p>
+        </article>
+        <article>
+          <span>ADMIN</span>
+          <h3>平台管理员</h3>
+          <p>同步目录、查看学习状态、下架归档、预览删除影响。</p>
+        </article>
+      </section>
+
+      <section class="workflow" id="workflow" aria-labelledby="workflow-title">
+        <div class="section-intro section-intro--light">
+          <p class="case-label">CONTROLLED WORKFLOW</p>
+          <h2 id="workflow-title">系统把“自动化”放在人工判断之后</h2>
+          <p>顺序不是装饰；每一段都对应一个状态、一个责任人和一个可检查结果。</p>
+        </div>
+        <ol class="workflow__rail">
+          <li><b>01</b><strong>保存草稿</strong><span>允许不完整，先保留工作</span></li>
+          <li><b>02</b><strong>准备题目</strong><span>人工录入 / Excel / AI 候选</span></li>
+          <li><b>03</b><strong>人工审核</strong><span>核对原文依据与适用部门</span></li>
+          <li><b>04</b><strong>预览同步</strong><span>只写入未上线课程草稿</span></li>
+          <li><b>05</b><strong>学习追踪</strong><span>进度、题目与有效学习时长</span></li>
+          <li><b>06</b><strong>生命周期治理</strong><span>下架、恢复、归档、删除预览</span></li>
+        </ol>
+      </section>
+
+      <section class="evidence" id="evidence" aria-labelledby="evidence-title">
+        <div class="section-intro">
+          <p class="case-label">INTERFACE EVIDENCE</p>
+          <h2 id="evidence-title">界面不是“效果图”，而是业务规则的外显</h2>
+          <p>以下截图来自公司版前端的本机脱敏镜像。页面结构与交互保持一致，运行数据全部替换为示例。</p>
+        </div>
+
+        <article class="evidence-pair">
+          <div class="evidence-copy">
+            <span class="plate-number">PLATE 02 / 03</span>
+            <h3>员工端：从课程发现走到个人学习清单</h3>
+            <p>
+              课程中心支持按分类、来源、修读规则、难度与形式筛选；“我的学习”将全员必修、部门必修和主动报名拆开，避免把所有课程都堆在同一页。
+            </p>
+            <ul>
+              <li>必修 / 选修规则进入个人任务，而不是只做课程标签</li>
+              <li>学习进度、最近动作和完成状态在同一视图持续更新</li>
+            </ul>
+          </div>
+          <div class="evidence-pair__images">
+            <figure class="evidence-frame">
+              <figcaption><span>02</span><strong>课程中心</strong></figcaption>
+              <img src="./assets/screenshots/02-course-center.png" alt="脱敏课程中心截图" loading="lazy" width="1280" height="660" />
+            </figure>
+            <figure class="evidence-frame">
+              <figcaption><span>03</span><strong>我的学习</strong></figcaption>
+              <img src="./assets/screenshots/03-my-learning.png" alt="脱敏个人学习进度截图" loading="lazy" width="1280" height="660" />
+            </figure>
+          </div>
+        </article>
+
+        <article class="evidence-row evidence-row--reverse">
+          <div class="evidence-copy">
+            <span class="plate-number">PLATE 04 / 08</span>
+            <h3>内容端：投稿不是一次提交，而是受控进入课程库</h3>
+            <p>
+              投稿者先保存课程信息和适用部门，再准备十道题并提交。管理员能退回修改、通过审核，或在同步前重新预览；课程与题目都不会因为一次点击直接公开。
+            </p>
+            <ul>
+              <li>适用部门决定内部课程的自动必修范围</li>
+              <li>审核通过后仍需第二次确认，目标状态固定为“未上线”</li>
+            </ul>
+          </div>
+          <div class="stacked-plates">
+            <figure class="evidence-frame evidence-frame--wide">
+              <figcaption><span>04</span><strong>课程投稿三步流</strong></figcaption>
+              <img src="./assets/screenshots/04-course-submission.png" alt="脱敏课程投稿页面截图" loading="lazy" width="1280" height="660" />
+            </figure>
+            <figure class="evidence-frame evidence-frame--wide">
+              <figcaption><span>08</span><strong>审核与同步预览</strong></figcaption>
+              <img src="./assets/screenshots/08-admin-review-workflow.png" alt="脱敏课程审核与同步流程截图" loading="lazy" width="1280" height="660" />
+            </figure>
+          </div>
+        </article>
+
+        <article class="evidence-row">
+          <div class="evidence-copy">
+            <span class="plate-number">PLATE 10</span>
+            <h3>AI 只产出候选题，发布权留给人</h3>
+            <p>
+              AI 可以依据课程资料生成候选问题，但题干、选项、答案、解析、知识点与原文依据均需人工核对。管理员保存修改后，仍要单独执行发布。
+            </p>
+            <div class="decision-note">
+              <strong>产品取舍</strong>
+              <span>不做“AI 自动生成并自动发布”，因为题目错误会直接污染学习结果。</span>
+            </div>
+          </div>
+          <figure class="evidence-frame evidence-frame--feature">
+            <figcaption><span>10</span><strong>AI 辅助题库人工复核</strong></figcaption>
+            <img src="./assets/screenshots/10-ai-quiz-review.png" alt="AI 辅助题库人工复核脱敏截图" loading="lazy" width="1280" height="674" />
+          </figure>
+        </article>
+
+        <article class="evidence-row evidence-row--reverse">
+          <div class="evidence-copy">
+            <span class="plate-number">PLATE 06 / 09</span>
+            <h3>管理员端：先做可逆操作，再开放永久删除</h3>
+            <p>
+              日常治理优先使用下架、恢复和归档。只有已下架课程才能进入永久删除预览；预览会列出课时、题库、学习任务、时长、提醒与适用部门等关联影响。
+            </p>
+            <ul>
+              <li>输入完整课程名 + 勾选学习记录清理，防止误操作</li>
+              <li>投稿与审核证据保留，不随课程本体删除</li>
+            </ul>
+          </div>
+          <div class="stacked-plates">
+            <figure class="evidence-frame evidence-frame--wide">
+              <figcaption><span>06</span><strong>课程生命周期清单</strong></figcaption>
+              <img src="./assets/screenshots/06-course-governance.png" alt="脱敏课程生命周期管理截图" loading="lazy" width="1280" height="660" />
+            </figure>
+            <figure class="evidence-frame evidence-frame--wide evidence-frame--danger">
+              <figcaption><span>09</span><strong>永久删除影响预览</strong></figcaption>
+              <img src="./assets/screenshots/09-delete-impact-preview.png" alt="脱敏课程永久删除影响预览截图" loading="lazy" width="1280" height="674" />
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="verification" id="boundaries" aria-labelledby="verification-title">
+        <div class="section-intro section-intro--light">
+          <p class="case-label">EVIDENCE & BOUNDARIES</p>
+          <h2 id="verification-title">能证明什么，也明确不能证明什么</h2>
+        </div>
+        <div class="verification__grid">
+          <article>
+            <span>VERIFIED</span>
+            <h3>已核验</h3>
+            <ul>
+              <li>原私有实现独立复跑：19 个测试套件、162 项单测通过</li>
+              <li>管理员接口具备登录与角色门禁</li>
+              <li>删除链路包含状态、名称、确认与预览令牌校验</li>
+              <li>AI 题目候选不会自动保存、提交或发布</li>
+            </ul>
+          </article>
+          <article>
+            <span>PUBLICATION BOUNDARY</span>
+            <h3>公开边界</h3>
+            <ul>
+              <li>不公开原代码、Git 历史、环境文件或部署配置</li>
+              <li>不公开员工、部门、内部课程、学习记录或真实数量</li>
+              <li>不公开租户链接、应用标识、数据表与字段标识</li>
+              <li>截图全部使用合成示例数据，并通过 OCR 与文本扫描</li>
+            </ul>
+          </article>
+          <article>
+            <span>NOT CLAIMED</span>
+            <h3>不作宣称</h3>
+            <ul>
+              <li>不声称覆盖全员或已有真实业务增长指标</li>
+              <li>不声称 AI 自动运营课程或替代人工审核</li>
+              <li>不声称已执行真实生产课程删除</li>
+              <li>截图中的课程、角色与数量不代表任何组织现状</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing">
+        <p class="case-label">MY CONTRIBUTION</p>
+        <h2>我真正能带走的能力，是把业务要求翻译成可运行、可验证的流程。</h2>
+        <p>
+          项目使用 AI 编程工具加速实现，但需求边界、状态设计、人工门禁、测试取舍和公开范围由我负责判断。
+        </p>
+        <a
+          class="button button--primary"
+          href="https://github.com/NafYoung/ai-academy-miaoda-showcase"
+          target="_blank"
+          rel="noopener noreferrer"
+        >查看仓库与验证说明 ↗</a>
+      </section>
+    </main>
+
+    <footer>
+      <p>Athena · sanitized product case</p>
+      <p>真实界面结构 · 合成示例数据 · 不含组织内部资料</p>
+    </footer>
   </body>
 </html>

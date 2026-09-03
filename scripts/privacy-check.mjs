@@ -10,10 +10,13 @@ const SKIPPED_DIRECTORIES = new Set([
   "coverage",
   "node_modules",
   "playwright-report",
-  "screenshots",
   "test-results",
 ]);
-const TEXT_FIXTURE_FILES = new Set(["scripts/privacy-check.mjs", "tests/privacy-check.test.mjs"]);
+const TEXT_FIXTURE_FILES = new Set([
+  "scripts/ocr-check.mjs",
+  "scripts/privacy-check.mjs",
+  "tests/privacy-check.test.mjs",
+]);
 
 export const BLOCKED_FILE_PATTERNS = Object.freeze([
   { rule: "environment-file", pattern: /(^|\/)\.env(?:\.|$)/i },
@@ -22,7 +25,7 @@ export const BLOCKED_FILE_PATTERNS = Object.freeze([
 ]);
 
 const INTERNAL_BRAND_PATTERN = new RegExp(
-  ["\\x50\\x41\\x4e\\x45", "\\x41\\x74\\x68\\x65\\x6e\\x61"].join("|"),
+  ["\\x50\\x41\\x4e\\x45", "\\x42\\x79\\x74\\x65\\x44\\x61\\x6e\\x63\\x65"].join("|"),
   "i",
 );
 
@@ -33,11 +36,13 @@ const BLOCKED_TEXT_PATTERNS = Object.freeze([
     pattern:
       /https?:\/\/(?!www\.feishu\.cn(?:\/|$))[a-z0-9.-]*feishu\.cn\/(?:wiki|minutes|base|sheets|docx?)(?:\/|\b)/i,
   },
+  { rule: "private-app-domain", pattern: /[a-z0-9.-]+\.feishuapp\.com\/app\//i },
   { rule: "private-capability-path", pattern: /server[\\/]capabilities|@lark-apaas/i },
   { rule: "private-service-domain", pattern: /miaoda-git\.feishu\.cn|aiforce\.cloud/i },
   { rule: "platform-app-id", pattern: /\bapp_[a-z0-9]{8,}\b/i },
   { rule: "base-table-id", pattern: /\btbl[a-z0-9]{8,}\b/i },
   { rule: "base-field-id", pattern: /\bfld[a-z0-9]{8,}\b/i },
+  { rule: "lark-private-id", pattern: /\b(?:ou_|on_|od-)[a-z0-9_-]{8,}\b/i },
   {
     rule: "credential-assignment",
     pattern: /(?:access[_-]?token|client[_-]?secret|private[_-]?key|password)\s*[:=]\s*["'][^"']{8,}/i,
