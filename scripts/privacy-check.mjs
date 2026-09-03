@@ -24,13 +24,7 @@ export const BLOCKED_FILE_PATTERNS = Object.freeze([
   { rule: "private-capability-file", pattern: /(^|\/)server\/capabilities(?:\/|$)/i },
 ]);
 
-const INTERNAL_BRAND_PATTERN = new RegExp(
-  ["\\x50\\x41\\x4e\\x45", "\\x42\\x79\\x74\\x65\\x44\\x61\\x6e\\x63\\x65"].join("|"),
-  "i",
-);
-
 const BLOCKED_TEXT_PATTERNS = Object.freeze([
-  { rule: "internal-brand", pattern: INTERNAL_BRAND_PATTERN },
   {
     rule: "tenant-resource-url",
     pattern:
@@ -55,11 +49,16 @@ export function scanFilePath(relativePath) {
   );
 }
 
-export function scanText(text, relativePath) {
-  return BLOCKED_TEXT_PATTERNS.filter(({ pattern }) => pattern.test(text)).map(({ rule }) => ({
+export function scanText(text, relativePath, privateTerms = []) {
+  const findings = BLOCKED_TEXT_PATTERNS.filter(({ pattern }) => pattern.test(text)).map(({ rule }) => ({
     file: relativePath,
     rule,
   }));
+  const normalizedText = text.toLowerCase();
+  if (privateTerms.some((term) => term.trim() && normalizedText.includes(term.trim().toLowerCase()))) {
+    findings.push({ file: relativePath, rule: "private-review-term" });
+  }
+  return findings;
 }
 
 async function collectFiles(directory, base = directory) {
@@ -84,7 +83,7 @@ function isLikelyBinary(buffer) {
   return buffer.subarray(0, Math.min(buffer.length, 8_000)).includes(0);
 }
 
-export async function runPrivacyCheck(root = PROJECT_ROOT) {
+export async function runPrivacyCheck(root = PROJECT_ROOT, privateTerms = []) {
   const files = await collectFiles(root);
   const findings = [];
 
@@ -94,14 +93,15 @@ export async function runPrivacyCheck(root = PROJECT_ROOT) {
 
     const buffer = await fs.readFile(path.join(root, relativePath));
     if (isLikelyBinary(buffer)) continue;
-    findings.push(...scanText(buffer.toString("utf8"), relativePath));
+    findings.push(...scanText(buffer.toString("utf8"), relativePath, privateTerms));
   }
 
   return { files, findings };
 }
 
 async function main() {
-  const { files, findings } = await runPrivacyCheck();
+  const privateTerms = (process.env.SHOWCASE_PRIVATE_TERMS ?? "").split("|");
+  const { files, findings } = await runPrivacyCheck(PROJECT_ROOT, privateTerms);
 
   if (findings.length > 0) {
     console.error("Privacy check failed:");

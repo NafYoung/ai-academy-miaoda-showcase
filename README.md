@@ -89,7 +89,7 @@ AI 可依据课程资料生成候选题，但题干、选项、答案、解析�
 
 ## 本地查看与检查
 
-无需安装第三方依赖；使用 Node.js 22+ 和 Python 3：
+案例页本身无第三方前端依赖，常规查看与测试使用 Node.js 22+ 和 Python 3：
 
 ```bash
 npm run serve
@@ -100,3 +100,5 @@ npm run screenshots:ocr
 ```
 
 打开 <http://localhost:4173> 查看案例页。
+
+截图 OCR 另需本机已安装的 Tesseract 及 `chi_sim`、`eng` 语言数据。需要排除的组织或资料关键词可在本机通过 `SHOWCASE_PRIVATE_TERMS` 传入，以竖线分隔；不将实际检查词写入公开仓库。当前检查结果见 [截图案例验证记录](docs/testing/showcase-sanitization.tdd.md)。

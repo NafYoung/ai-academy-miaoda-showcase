@@ -1,6 +1,6 @@
 # 验证与公开边界
 
-更新时间：2026-09-02
+更新时间：2026-09-03
 
 ## 截图如何生成
 
@@ -49,11 +49,15 @@
 
 ```bash
 npm test
+npm run test:coverage
 npm run privacy:check
 npm run screenshots:manifest
+npm run screenshots:ocr
 ```
 
 `privacy:check` 检查受限文件路径、租户资源链接、应用 / 数据表标识和常见凭据形态。截图 OCR 在发布前于本机执行；二进制图片不会被简单文本扫描误判为已检查。
+
+组织与资料关键词仅通过本机环境变量 `SHOWCASE_PRIVATE_TERMS` 传入，不保存到公共脚本或测试夹具。OCR 需要 Tesseract 及中英文语言数据，并与人工看图配合；自动扫描不构成绝对无遗漏保证。
 
 ## 声明边界
 

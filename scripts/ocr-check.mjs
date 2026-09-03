@@ -4,6 +4,7 @@ import path from "node:path";
 import process from "node:process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
+import { scanText } from "./privacy-check.mjs";
 
 const execFileAsync = promisify(execFile);
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
@@ -11,7 +12,6 @@ const PROJECT_ROOT = path.resolve(path.dirname(SCRIPT_PATH), "..");
 const SCREENSHOT_DIRECTORY = path.join(PROJECT_ROOT, "assets", "screenshots");
 
 const BLOCKED_OCR_PATTERNS = [
-  { rule: "organization-name", pattern: /PANE|ByteDance|字节跳动/i },
   { rule: "tenant-domain", pattern: /(?:feishuapp|larkoffice|aiforce)\.com/i },
   { rule: "platform-app-id", pattern: /\bapp_[a-z0-9]{8,}\b/i },
   { rule: "base-table-id", pattern: /\btbl[a-z0-9]{8,}\b/i },
@@ -34,9 +34,11 @@ async function main() {
     .filter((name) => name.endsWith(".png"))
     .sort();
   const findings = [];
+  const privateTerms = (process.env.SHOWCASE_PRIVATE_TERMS ?? "").split("|");
 
   for (const name of names) {
     const text = await recognize(path.join(SCREENSHOT_DIRECTORY, name));
+    findings.push(...scanText(text, name, privateTerms));
     for (const { rule, pattern } of BLOCKED_OCR_PATTERNS) {
       if (pattern.test(text)) findings.push({ file: name, rule });
     }

@@ -13,15 +13,22 @@ import {
 
 test("文本扫描能识别组织名称、租户链接与私有配置形态", () => {
   const sample = [
-    "PA" + "NE Academy",
+    "Example Internal Organization Academy",
     "https://example." + "feishu.cn/wiki/private",
     "server/" + "capabilities/course.json",
   ].join("\n");
 
-  const findings = scanText(sample, "sample.txt");
-  assert.ok(findings.some(({ rule }) => rule === "internal-brand"));
+  const findings = scanText(sample, "sample.txt", ["Example Internal Organization"]);
+  assert.ok(findings.some(({ rule }) => rule === "private-review-term"));
   assert.ok(findings.some(({ rule }) => rule === "tenant-resource-url"));
   assert.ok(findings.some(({ rule }) => rule === "private-capability-path"));
+});
+
+test("本机检查词按普通文本匹配，忽略大小写与空项且不回显内容", () => {
+  const findings = scanText("Example (Group) notes", "notes.txt", ["", " ", " example (group) "]);
+  assert.deepEqual(findings, [{ file: "notes.txt", rule: "private-review-term" }]);
+  assert.deepEqual(scanText("public example", "notes.txt", ["", " "]), []);
+  assert.deepEqual(scanText("Example (Group) notes", "notes.txt"), []);
 });
 
 test("文本扫描允许案例名称，但阻止私有应用和身份标识", () => {
@@ -40,7 +47,7 @@ test("文本扫描允许案例名称，但阻止私有应用和身份标识", ()
 test("公开飞书官网链接不会被误报", () => {
   const findings = scanText(
     "https://www.feishu.cn/hc/zh-CN/academy/guides_for_new_users",
-    "src/courses.js",
+    "README.md",
   );
   assert.deepEqual(findings, []);
 });
@@ -50,11 +57,11 @@ test("文件路径扫描阻止环境文件与私有平台元数据", () => {
   assert.ok(scanFilePath(".env").length > 0);
   assert.ok(scanFilePath(".spark/meta.json").length > 0);
   assert.ok(scanFilePath("server/" + "capabilities/course.json").length > 0);
-  assert.deepEqual(scanFilePath("src/courses.js"), []);
+  assert.deepEqual(scanFilePath("src/styles.css"), []);
 });
 
 test("全仓扫描遍历嵌套文本文件并跳过二进制内容", async (t) => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "orbit-privacy-safe-"));
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "athena-privacy-safe-"));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
   await fs.mkdir(path.join(root, "src"));
   await fs.writeFile(path.join(root, "src", "safe.js"), "export const source = 'www.feishu.cn';");
@@ -66,15 +73,16 @@ test("全仓扫描遍历嵌套文本文件并跳过二进制内容", async (t) =
 });
 
 test("全仓扫描同时报告受限路径与租户资源", async (t) => {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), "orbit-privacy-blocked-"));
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "athena-privacy-blocked-"));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
   await fs.writeFile(path.join(root, ".env"), "SAFE_TEST_VALUE=placeholder");
   await fs.writeFile(
     path.join(root, "notes.txt"),
-    "https://tenant." + "feishu.cn/minutes/example",
+    "Example Internal Organization\nhttps://tenant." + "feishu.cn/minutes/example",
   );
 
-  const { findings } = await runPrivacyCheck(root);
+  const { findings } = await runPrivacyCheck(root, ["Example Internal Organization"]);
   assert.ok(findings.some(({ rule }) => rule === "environment-file"));
   assert.ok(findings.some(({ rule }) => rule === "tenant-resource-url"));
+  assert.ok(findings.some(({ rule }) => rule === "private-review-term"));
 });
