@@ -1,0 +1,128 @@
+.demo-bar,
+.demo-bar-pill {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 2147483000;
+  font-family: 'PingFang SC', system-ui, sans-serif;
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.16);
+}
+
+.demo-bar {
+  width: 300px;
+  padding: 14px;
+  border-radius: 18px;
+  font-size: 12px;
+}
+
+.demo-bar-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.demo-bar-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.demo-bar-head strong {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #3370ff;
+  color: #fff;
+  font-size: 11px;
+}
+
+.demo-bar-head span {
+  flex: 1;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.demo-bar-close {
+  border: 0;
+  background: none;
+  color: #94a3b8;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.demo-bar-label {
+  margin: 12px 0 6px;
+  color: #64748b;
+}
+
+.demo-bar-roles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.demo-bar-roles button {
+  display: grid;
+  gap: 2px;
+  padding: 8px 4px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.demo-bar-roles button b {
+  font-size: 13px;
+}
+
+.demo-bar-roles button small {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.demo-bar-roles button.is-active {
+  border-color: #3370ff;
+  background: #eef3ff;
+  color: #1d4ed8;
+}
+
+.demo-bar-hint {
+  margin: 8px 0 0;
+  color: #475569;
+}
+
+.demo-bar-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.demo-bar-actions button {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.demo-bar-actions a {
+  color: #3370ff;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .demo-bar {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+}

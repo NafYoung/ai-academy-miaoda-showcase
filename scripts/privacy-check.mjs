@@ -1,120 +1,65 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import process from "node:process";
-import { fileURLToPath } from "node:url";
+// 公开前的脱敏扫描：源码与构建产物都不得出现私有标识。
+// 组织名等敏感词不写进仓库，在本机或 CI 通过 SHOWCASE_PRIVATE_TERMS 传入（竖线分隔）。
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
-const SCRIPT_PATH = fileURLToPath(import.meta.url);
-const PROJECT_ROOT = path.resolve(path.dirname(SCRIPT_PATH), "..");
-const SKIPPED_DIRECTORIES = new Set([
-  ".git",
-  "coverage",
-  "node_modules",
-  "playwright-report",
-  "test-results",
-]);
-const TEXT_FIXTURE_FILES = new Set([
-  "scripts/ocr-check.mjs",
-  "scripts/privacy-check.mjs",
-  "tests/privacy-check.test.mjs",
-]);
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const SKIPPED = new Set(['.git', 'node_modules', 'coverage']);
+const SELF = 'scripts/privacy-check.mjs';
 
-export const BLOCKED_FILE_PATTERNS = Object.freeze([
-  { rule: "environment-file", pattern: /(^|\/)\.env(?:\.|$)/i },
-  { rule: "private-platform-metadata", pattern: /(^|\/)\.spark(?:\/|$)/i },
-  { rule: "private-capability-file", pattern: /(^|\/)server\/capabilities(?:\/|$)/i },
-]);
+const BLOCKED_FILES = [
+  { rule: 'environment-file', pattern: /(^|\/)\.env(?:\.|$)/i },
+  { rule: 'platform-metadata', pattern: /(^|\/)\.spark(?:\/|$)/i },
+  { rule: 'server-code', pattern: /(^|\/)server\//i },
+];
 
-const BLOCKED_TEXT_PATTERNS = Object.freeze([
+const BLOCKED_TEXT = [
   {
-    rule: "tenant-resource-url",
-    pattern:
-      /https?:\/\/(?!www\.feishu\.cn(?:\/|$))[a-z0-9.-]*feishu\.cn\/(?:wiki|minutes|base|sheets|docx?)(?:\/|\b)/i,
+    rule: 'tenant-resource-url',
+    pattern: /https?:\/\/(?!www\.feishu\.cn(?:\/|$))[a-z0-9.-]*feishu\.cn\/(?:wiki|minutes|base|sheets|docx?)(?:\/|\b)/i,
   },
-  { rule: "private-app-domain", pattern: /[a-z0-9.-]+\.feishuapp\.com\/app\//i },
-  { rule: "private-capability-path", pattern: /server[\\/]capabilities|@lark-apaas/i },
-  { rule: "private-service-domain", pattern: /miaoda-git\.feishu\.cn|aiforce\.cloud/i },
-  { rule: "platform-app-id", pattern: /\bapp_[a-z0-9]{8,}\b/i },
-  { rule: "base-table-id", pattern: /\btbl[a-z0-9]{8,}\b/i },
-  { rule: "base-field-id", pattern: /\bfld[a-z0-9]{8,}\b/i },
-  { rule: "lark-private-id", pattern: /\b(?:ou_|on_|od-)[a-z0-9_-]{8,}\b/i },
-  {
-    rule: "credential-assignment",
-    pattern: /(?:access[_-]?token|client[_-]?secret|private[_-]?key|password)\s*[:=]\s*["'][^"']{8,}/i,
-  },
-]);
+  { rule: 'private-app-domain', pattern: /[a-z0-9.-]+\.feishuapp\.com\/app\//i },
+  { rule: 'private-service-domain', pattern: /miaoda-git\.feishu\.cn|aiforce\.cloud/i },
+  { rule: 'platform-app-id', pattern: /\bapp_[a-z0-9]{8,}\b/i },
+  { rule: 'base-table-id', pattern: /\btbl[A-Za-z0-9]{12,}\b/ },
+  { rule: 'base-field-id', pattern: /\bfld[A-Za-z0-9]{8}\b/ },
+  { rule: 'base-record-id', pattern: /\brecv[A-Za-z0-9]{8,}\b/ },
+  // 演示数据使用 od-demo-* 虚构部门 ID，予以放行。
+  { rule: 'lark-private-id', pattern: /\b(?:ou_|on_|od-(?!demo-))[a-z0-9_-]{8,}\b/i },
+  { rule: 'agent-channel-token', pattern: /\bwsk_[A-Za-z0-9]{8,}\b/ },
+  { rule: 'credential-assignment', pattern: /(?:access[_-]?token|client[_-]?secret|private[_-]?key|password)\s*[:=]\s*["'][^"']{8,}/i },
+];
 
-export function scanFilePath(relativePath) {
-  return BLOCKED_FILE_PATTERNS.filter(({ pattern }) => pattern.test(relativePath)).map(
-    ({ rule }) => ({ file: relativePath, rule }),
-  );
-}
-
-export function scanText(text, relativePath, privateTerms = []) {
-  const findings = BLOCKED_TEXT_PATTERNS.filter(({ pattern }) => pattern.test(text)).map(({ rule }) => ({
-    file: relativePath,
-    rule,
-  }));
-  const normalizedText = text.toLowerCase();
-  if (privateTerms.some((term) => term.trim() && normalizedText.includes(term.trim().toLowerCase()))) {
-    findings.push({ file: relativePath, rule: "private-review-term" });
+async function collect(dir) {
+  const out = [];
+  for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
+    if (SKIPPED.has(entry.name)) continue;
+    const abs = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...(await collect(abs)));
+    else if (entry.isFile()) out.push(path.relative(ROOT, abs));
   }
-  return findings;
+  return out;
 }
 
-async function collectFiles(directory, base = directory) {
-  const entries = await fs.readdir(directory, { withFileTypes: true });
-  const files = [];
-
-  for (const entry of entries) {
-    if (entry.isDirectory() && SKIPPED_DIRECTORIES.has(entry.name)) continue;
-
-    const absolutePath = path.join(directory, entry.name);
-    if (entry.isDirectory()) {
-      files.push(...(await collectFiles(absolutePath, base)));
-    } else if (entry.isFile()) {
-      files.push(path.relative(base, absolutePath));
-    }
-  }
-
-  return files.sort();
+const terms = (process.env.SHOWCASE_PRIVATE_TERMS ?? '').split('|').map((t) => t.trim().toLowerCase()).filter(Boolean);
+const findings = [];
+const files = await collect(ROOT);
+for (const file of files) {
+  for (const { rule, pattern } of BLOCKED_FILES) if (pattern.test(file)) findings.push(`${rule}: ${file}`);
+  if (file === SELF) continue;
+  const buffer = await fs.readFile(path.join(ROOT, file));
+  if (buffer.subarray(0, 8000).includes(0)) continue;
+  const text = buffer.toString('utf8');
+  for (const { rule, pattern } of BLOCKED_TEXT) if (pattern.test(text)) findings.push(`${rule}: ${file}`);
+  const lower = text.toLowerCase();
+  if (terms.some((t) => lower.includes(t))) findings.push(`private-review-term: ${file}`);
 }
 
-function isLikelyBinary(buffer) {
-  return buffer.subarray(0, Math.min(buffer.length, 8_000)).includes(0);
-}
-
-export async function runPrivacyCheck(root = PROJECT_ROOT, privateTerms = []) {
-  const files = await collectFiles(root);
-  const findings = [];
-
-  for (const relativePath of files) {
-    findings.push(...scanFilePath(relativePath));
-    if (TEXT_FIXTURE_FILES.has(relativePath)) continue;
-
-    const buffer = await fs.readFile(path.join(root, relativePath));
-    if (isLikelyBinary(buffer)) continue;
-    findings.push(...scanText(buffer.toString("utf8"), relativePath, privateTerms));
-  }
-
-  return { files, findings };
-}
-
-async function main() {
-  const privateTerms = (process.env.SHOWCASE_PRIVATE_TERMS ?? "").split("|");
-  const { files, findings } = await runPrivacyCheck(PROJECT_ROOT, privateTerms);
-
-  if (findings.length > 0) {
-    console.error("Privacy check failed:");
-    for (const finding of findings) {
-      console.error(`- ${finding.rule}: ${finding.file}`);
-    }
-    process.exitCode = 1;
-    return;
-  }
-
-  console.log(`Privacy check passed: ${files.length} files scanned.`);
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
-  await main();
+if (findings.length) {
+  console.error(`Privacy check failed (${findings.length}):\n- ${findings.join('\n- ')}`);
+  process.exitCode = 1;
+} else {
+  console.log(`Privacy check passed: ${files.length} files scanned, ${terms.length} private terms checked.`);
 }

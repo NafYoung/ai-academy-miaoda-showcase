@@ -1,0 +1,13 @@
+/* Keep the catalog width stable even when filtering removes page overflow. */
+html {
+  scrollbar-gutter: stable;
+}
+
+@supports (scrollbar-gutter: stable) {
+  /* Radix removes the scrollbar and adds a body margin. The root gutter
+     already reserves that space, so adding the margin would count it twice.
+     Include html to override the scroll-lock library's injected rule. */
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+  }
+}

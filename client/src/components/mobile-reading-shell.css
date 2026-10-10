@@ -1,0 +1,50 @@
+.athena-mobile-reading-shell {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: white;
+  color: #162039;
+  overflow: hidden;
+}
+.athena-mobile-reading-shell[open] {
+  display: flex;
+  flex-direction: column;
+}
+.athena-mobile-reading-header {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  padding: max(4px, env(safe-area-inset-top)) 12px 4px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.athena-mobile-reading-content {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.athena-mobile-reading-content .athena-mobile-pdf-reader {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+}
+.athena-mobile-reading-content .athena-mobile-pdf-toolbar {
+  flex: 0 0 auto;
+}
+.athena-mobile-reading-content .athena-mobile-pdf-page {
+  flex: 1 1 0;
+  min-height: 0;
+  max-height: none;
+}

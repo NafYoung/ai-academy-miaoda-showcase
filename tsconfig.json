@@ -1,0 +1,92 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@client/*": [
+        "client/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@demo/*": [
+        "demo/*"
+      ],
+      "@/*": [
+        "client/src/*"
+      ],
+      "@lark-apaas/client-toolkit/components/AppContainer": [
+        "demo/shims/toolkit/AppContainer.tsx"
+      ],
+      "@lark-apaas/client-toolkit/components/ErrorRender": [
+        "demo/shims/toolkit/ErrorRender.tsx"
+      ],
+      "@lark-apaas/client-toolkit/components/UniversalLink": [
+        "demo/shims/toolkit/UniversalLink.tsx"
+      ],
+      "@lark-apaas/client-toolkit/components/ActiveLink": [
+        "demo/shims/toolkit/ActiveLink.tsx"
+      ],
+      "@lark-apaas/client-toolkit/auth": [
+        "demo/shims/toolkit/auth.ts"
+      ],
+      "@lark-apaas/client-toolkit/utils/getAxiosForBackend": [
+        "demo/shims/toolkit/getAxiosForBackend.ts"
+      ],
+      "@lark-apaas/client-toolkit/hooks/useCurrentUserProfile": [
+        "demo/shims/toolkit/useCurrentUserProfile.ts"
+      ],
+      "@lark-apaas/client-toolkit/dataloom": [
+        "demo/shims/toolkit/dataloom.ts"
+      ],
+      "@lark-apaas/client-toolkit/tools/storage": [
+        "demo/shims/toolkit/storage.ts"
+      ],
+      "@lark-apaas/client-toolkit/tools/services": [
+        "demo/shims/toolkit/services.ts"
+      ],
+      "@lark-apaas/client-toolkit/utils/getEnv": [
+        "demo/shims/toolkit/getEnv.ts"
+      ],
+      "@lark-apaas/client-toolkit/utils/resolveAppUrl": [
+        "demo/shims/toolkit/resolveAppUrl.ts"
+      ],
+      "@lark-apaas/client-toolkit/logger": [
+        "demo/shims/toolkit/logger.ts"
+      ],
+      "@lark-apaas/aily-web-sdk": [
+        "demo/shims/aily.ts"
+      ],
+      "@/components/ContentEmbed": [
+        "demo/overrides/ContentEmbed.tsx"
+      ],
+      "@/components/CourseDocumentReader": [
+        "demo/overrides/CourseDocumentReader.tsx"
+      ]
+    }
+  },
+  "include": [
+    "client/src",
+    "shared",
+    "demo",
+    "vite.config.ts"
+  ]
+}
